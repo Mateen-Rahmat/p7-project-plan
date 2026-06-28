@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>COMP47250 P7 — Project Plan</title>
+<title>COMP47250 P7 - Project Plan</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -104,20 +104,20 @@
 <body>
 <div class="page">
 
-  <h1>COMP47250 P7 — Explainable Financial Forecasting Platform</h1>
-  <p class="subtitle">Updated June 24, 2026 &nbsp;·&nbsp; Interim demo completed June 23 &nbsp;·&nbsp; Final deadline August 18, 2026</p>
+  <h1>COMP47250 P7 - Explainable Financial Forecasting Platform</h1>
+  <p class="subtitle">Updated June 24, 2026 &nbsp;·&nbsp; Interim demo done June 23 &nbsp;·&nbsp; Final deadline August 18, 2026</p>
 
   <!-- OVERVIEW -->
   <div class="overview-grid">
     <div class="ov-card">
       <div class="ov-icon purple"><i class="ti ti-telescope"></i></div>
       <div class="ov-title">Overview</div>
-      <div class="ov-body">A 6-person MSc project at UCD building an end-to-end platform that predicts 1 to 5-day returns for large-cap equities by fusing price, sentiment, and macro signals into three ML models.</div>
+      <div class="ov-body">Six MSc students at UCD building a platform that predicts short-term stock returns by combining price data, news sentiment, Reddit activity, and macro indicators into three machine learning models.</div>
     </div>
     <div class="ov-card">
       <div class="ov-icon teal"><i class="ti ti-target"></i></div>
       <div class="ov-title">Objectives</div>
-      <div class="ov-body">Collect and align four signal types, train and compare XGBoost, LSTM, and TFT, apply SHAP explainability to every prediction, and backtest with realistic transaction costs to prove economic value.</div>
+      <div class="ov-body">Collect and clean four types of signals, train and compare XGBoost, LSTM, and TFT models, use SHAP to explain every prediction, and run a realistic backtest that accounts for transaction costs.</div>
       <div class="signal-row">
         <span class="signal signal-teal">OHLCV</span>
         <span class="signal signal-teal">Technicals</span>
@@ -128,7 +128,7 @@
     <div class="ov-card">
       <div class="ov-icon amber"><i class="ti ti-award"></i></div>
       <div class="ov-title">Success metric</div>
-      <div class="ov-body">Sharpe ratio above 0.8 beating the market index benchmark, with all three models live, SHAP explanations visible per prediction, and a deployed public dashboard.</div>
+      <div class="ov-body">A Sharpe ratio above 0.8 that beats the market benchmark, all three models running live, SHAP explanations visible for each prediction, and the whole thing deployed as a public dashboard.</div>
       <div class="signal-row">
         <span class="signal signal-amber">Sharpe &gt; 0.8</span>
         <span class="signal signal-amber">3 models</span>
@@ -141,66 +141,66 @@
   <div class="kpi-row">
     <div class="kpi"><div class="kpi-label">Team</div><div class="kpi-value">6</div><div class="kpi-sub">members</div></div>
     <div class="kpi"><div class="kpi-label">Stocks covered</div><div class="kpi-value">9</div><div class="kpi-sub">large-cap US equities</div></div>
-    <div class="kpi"><div class="kpi-label">Training data</div><div class="kpi-value">5 yrs</div><div class="kpi-sub">2021 – 2026</div></div>
+    <div class="kpi"><div class="kpi-label">Training data</div><div class="kpi-value">5 yrs</div><div class="kpi-sub">2021 to 2026</div></div>
     <div class="kpi"><div class="kpi-label">News headlines</div><div class="kpi-value">30k</div><div class="kpi-sub">FinBERT scored</div></div>
-    <div class="kpi"><div class="kpi-label">Models</div><div class="kpi-value">3</div><div class="kpi-sub">XGBoost · LSTM · TFT</div></div>
-    <div class="kpi"><div class="kpi-label">Final deadline</div><div class="kpi-value">Aug 18</div><div class="kpi-sub">report + assessment</div></div>
+    <div class="kpi"><div class="kpi-label">Models</div><div class="kpi-value">3</div><div class="kpi-sub">XGBoost, LSTM, TFT</div></div>
+    <div class="kpi"><div class="kpi-label">Final deadline</div><div class="kpi-value">Aug 18</div><div class="kpi-sub">report and assessment</div></div>
   </div>
 
   <!-- END PRODUCT -->
   <div class="end-product">
-    <div class="ep-title">What the end product looks like</div>
+    <div class="ep-title">What the finished platform will look like</div>
     <ul class="ep-list">
-      <li><i class="ti ti-device-desktop-analytics"></i>A live public dashboard showing today's BUY / SELL signal for each stock, updated every 3 hours via a cron service running on Render.</li>
-      <li><i class="ti ti-brain"></i>Three trained models — XGBoost, LSTM, and TFT — each producing a confidence score, with their results compared side by side on accuracy and financial KPIs.</li>
-      <li><i class="ti ti-chart-bar"></i>A SHAP explanation panel on every prediction page showing exactly which signals (RSI, sentiment, MACD, etc.) drove the forecast and by how much.</li>
-      <li><i class="ti ti-trending-up"></i>A walk-forward backtest report with Sharpe ratio, maximum drawdown, and Calmar ratio compared against a buy-and-hold benchmark.</li>
-      <li><i class="ti ti-api"></i>A REST API backed by Supabase (PostgreSQL) serving all predictions, sentiment scores, and backtest results to the frontend.</li>
+      <li><i class="ti ti-device-desktop-analytics"></i>A live dashboard showing today's buy or sell signal for each stock, refreshed every 3 hours by a background service running on Render.</li>
+      <li><i class="ti ti-brain"></i>Three trained models (XGBoost, LSTM, and TFT) each producing a confidence score, with results displayed side by side so you can compare how they perform.</li>
+      <li><i class="ti ti-chart-bar"></i>A SHAP explanation panel on every stock page showing which signals actually drove the prediction and by how much, so the output is never just a black box.</li>
+      <li><i class="ti ti-trending-up"></i>A backtest report with Sharpe ratio, maximum drawdown, and Calmar ratio, all measured against a simple buy-and-hold strategy so the results are honest and comparable.</li>
+      <li><i class="ti ti-api"></i>A REST API backed by Supabase that serves predictions, sentiment scores, and backtest results to the frontend in real time.</li>
     </ul>
   </div>
 
   <div class="alert-green">
-    Interim demo completed June 23. The team presented a working pipeline, XGBoost model, live frontend, and cron service. Next focus is closing the three gaps before the final demo on August 3.
+    The team presented the interim demo on June 23 and showed a working data pipeline, a trained XGBoost model, a live frontend, and the cron service running in production. The next focus is closing three gaps before the final demo on August 3.
   </div>
 
   <div class="deadline-row">
     <div class="deadline done"><div class="dl-date">May 29</div><div class="dl-label">Repo created</div></div>
     <div class="deadline done"><div class="dl-date">June 8</div><div class="dl-label">Project plan due</div></div>
     <div class="deadline done"><div class="dl-date">June 23</div><div class="dl-label">Interim demo done</div></div>
-    <div class="deadline now"><div class="dl-date">June 24</div><div class="dl-label">Today — plan finalised</div></div>
+    <div class="deadline now"><div class="dl-date">June 24</div><div class="dl-label">Plan finalised</div></div>
     <div class="deadline"><div class="dl-date">Aug 3</div><div class="dl-label">Final demo</div></div>
     <div class="deadline"><div class="dl-date">Aug 18</div><div class="dl-label">Final report</div></div>
   </div>
 
   <!-- PHASE 1 -->
   <div class="section">
-    <div class="section-title">Phase 1 — Setup and infrastructure (Week 1, completed)</div>
+    <div class="section-title">Phase 1 - Setup and infrastructure (Week 1, done)</div>
     <div class="phase">
       <div class="phase-header">
         <span class="phase-badge badge-done">Completed</span>
         <span class="phase-title">Project foundations</span>
-        <span class="phase-date">May 29 – June 10</span>
+        <span class="phase-date">May 29 to June 10</span>
       </div>
       <div class="items">
         <div class="item done">
           <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Create GitHub repository with personal branches for each team member</div>
+            <div class="item-text">Set up the GitHub repository with individual branches for each team member</div>
             <div class="item-who"><span class="who-pill">Varun (lead)</span><span class="who-pill">All members</span></div>
           </div>
         </div>
         <div class="item done">
           <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Upload project brief PDF and confirm tech stack</div>
+            <div class="item-text">Uploaded the project brief and agreed on the tech stack as a team</div>
             <div class="item-who"><span class="who-pill">Kanwal</span></div>
           </div>
         </div>
         <div class="item done">
           <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Download 5 years of OHLCV stock price data via yfinance for 9 tickers</div>
-            <div class="item-sub">AAPL, AMD, AMZN, GOOGL, JPM, META, MSFT, NVDA, TSLA stored in stock_data/</div>
+            <div class="item-text">Downloaded five years of daily price data (OHLCV) for all nine tickers using yfinance</div>
+            <div class="item-sub">Covers AAPL, AMD, AMZN, GOOGL, JPM, META, MSFT, NVDA, and TSLA, stored locally in stock_data/</div>
             <div class="item-who"><span class="who-pill">Varun</span></div>
           </div>
         </div>
@@ -210,41 +210,42 @@
 
   <!-- PHASE 2 -->
   <div class="section">
-    <div class="section-title">Phase 2 — Data pipeline (Weeks 2–3, completed)</div>
+    <div class="section-title">Phase 2 - Data pipeline (Weeks 2 to 3, done)</div>
     <div class="phase">
       <div class="phase-header">
         <span class="phase-badge badge-done">Completed</span>
         <span class="phase-title">News and Reddit data collection</span>
-        <span class="phase-date">June 8–17</span>
+        <span class="phase-date">June 8 to 17</span>
       </div>
       <div class="items">
         <div class="item done">
           <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Build GDELT news downloader — 5-year history, 4-week chunking, resume-safe, ~30,000 headlines</div>
+            <div class="item-text">Built a news downloader using the GDELT API covering five years of headlines, fetched in four-week chunks so it can safely resume if interrupted</div>
+            <div class="item-sub">Around 30,000 headlines collected in total across all tickers</div>
             <div class="item-who"><span class="who-pill">Varun</span></div>
           </div>
         </div>
         <div class="item done">
           <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Build Reddit downloader using Arctic Shift API (3-year history) and PRAW (last 30 days)</div>
-            <div class="item-sub">Scrapes wallstreetbets, stocks, investing, options subreddits across all 9 tickers</div>
+            <div class="item-text">Built a Reddit scraper that pulls historical posts via Arctic Shift and recent posts via the PRAW API</div>
+            <div class="item-sub">Covers wallstreetbets, stocks, investing, and options subreddits across all nine tickers</div>
             <div class="item-who"><span class="who-pill">Mateen</span></div>
           </div>
         </div>
         <div class="item done">
           <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Score all headlines and Reddit posts with ProsusAI/finbert — compound score of positive minus negative</div>
-            <div class="item-sub">30,000 news rows in scored_data/news_scored.csv. 6,460 daily aggregated rows in daily_sentiment.csv</div>
+            <div class="item-text">Scored every headline and Reddit post using FinBERT, producing a sentiment score between -1 (bearish) and +1 (bullish)</div>
+            <div class="item-sub">30,000 scored news rows saved to news_scored.csv, with 6,460 daily aggregated rows in daily_sentiment.csv</div>
             <div class="item-who"><span class="who-pill">Mateen</span><span class="who-pill">Varun</span></div>
           </div>
         </div>
         <div class="item done">
           <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Merge daily sentiment averages into the training dataset as a model feature</div>
+            <div class="item-text">Merged the daily sentiment averages into the main training dataset so the models can use them as features</div>
             <div class="item-who"><span class="who-pill">Mateen</span></div>
           </div>
         </div>
@@ -254,26 +255,26 @@
 
   <!-- PHASE 3 -->
   <div class="section">
-    <div class="section-title">Phase 3 — Model training (Weeks 4–5)</div>
+    <div class="section-title">Phase 3 - Model training (Weeks 4 to 5)</div>
     <div class="phase">
       <div class="phase-header">
         <span class="phase-badge badge-done">Completed</span>
         <span class="phase-title">XGBoost model</span>
-        <span class="phase-date">June 12–18</span>
+        <span class="phase-date">June 12 to 18</span>
       </div>
       <div class="items">
         <div class="item done">
           <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Train XGBoost on 16 features including FinBERT sentiment — 80/20 time-based split</div>
-            <div class="item-sub">51.5% accuracy, 0.518 AUC-ROC on 2,216 test rows. Model saved to xgb_sentiment_model.pkl</div>
+            <div class="item-text">Trained XGBoost on 16 features including technical indicators and the FinBERT sentiment score, using an 80/20 time-based split to avoid data leakage</div>
+            <div class="item-sub">Achieves 51.5% accuracy and a 0.518 AUC-ROC score on 2,216 test rows. Saved to xgb_sentiment_model.pkl</div>
             <div class="item-who"><span class="who-pill">Kanwal</span><span class="who-pill">Varun</span></div>
           </div>
         </div>
         <div class="item done">
           <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Run per-ticker backtest — TSLA strategy +92.2%, AMZN +33.3% vs buy-and-hold</div>
+            <div class="item-text">Ran a per-ticker backtest comparing the model strategy against buy-and-hold. TSLA came out at +92.2% and AMZN at +33.3%</div>
             <div class="item-who"><span class="who-pill">Kanwal</span></div>
           </div>
         </div>
@@ -282,24 +283,24 @@
 
     <div class="phase">
       <div class="phase-header">
-        <span class="phase-badge badge-done">Completed (pipeline only)</span>
-        <span class="phase-title">LSTM model — Kafka streaming pipeline</span>
+        <span class="phase-badge badge-done">Pipeline done, integration pending</span>
+        <span class="phase-title">LSTM model with Kafka streaming</span>
         <span class="phase-date">June 16</span>
       </div>
       <div class="items">
         <div class="item done">
           <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Build full Kafka pipeline with Docker Compose — producer fetches yfinance data, consumer runs LSTM inference</div>
-            <div class="item-sub">model.py, producer.py, consumer.py, logger.py in Kafka_flow_stock_data_LSTM/</div>
+            <div class="item-text">Built a full Kafka streaming pipeline with Docker Compose. The producer pulls live stock data from yfinance and the consumer runs LSTM inference in real time</div>
+            <div class="item-sub">All components are in Kafka_flow_stock_data_LSTM/ including model.py, producer.py, consumer.py, and logger.py</div>
             <div class="item-who"><span class="who-pill">Shreyas</span></div>
           </div>
         </div>
         <div class="item now">
           <i class="ti ti-clock item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Connect LSTM to the merged sentiment and macro features so it can be fairly compared to XGBoost</div>
-            <div class="item-sub">Currently trains on raw OHLCV only — sentiment pipeline is disconnected</div>
+            <div class="item-text">Connect the LSTM to the full feature set including sentiment and macro data so it can be fairly compared against XGBoost</div>
+            <div class="item-sub">Right now it only trains on raw price data. The sentiment pipeline needs to be wired in</div>
             <div class="item-who"><span class="who-pill">Shreyas</span><span class="who-pill">Abhijit</span></div>
           </div>
         </div>
@@ -309,22 +310,22 @@
     <div class="phase">
       <div class="phase-header">
         <span class="phase-badge badge-now">In progress</span>
-        <span class="phase-title">Temporal Fusion Transformer (TFT)</span>
+        <span class="phase-title">Temporal Fusion Transformer</span>
         <span class="phase-date">Target: July 5</span>
       </div>
       <div class="items">
         <div class="item next-item">
           <i class="ti ti-arrow-right item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Configure and train TFT using PyTorch Lightning on the full multi-signal dataset</div>
-            <div class="item-sub">Handles temporal sequences natively — better fit for multi-horizon (1 to 5-day) prediction</div>
+            <div class="item-text">Set up and train the TFT model using PyTorch Lightning on the full multi-signal dataset</div>
+            <div class="item-sub">TFT is particularly well suited here because it handles sequential data natively and supports multi-horizon forecasting (1 to 5 days out)</div>
             <div class="item-who"><span class="who-pill">Varun</span><span class="who-pill">Mateen</span></div>
           </div>
         </div>
         <div class="item todo">
           <i class="ti ti-circle-dashed item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Compare TFT vs XGBoost vs LSTM on accuracy, F1, and financial KPIs side by side</div>
+            <div class="item-text">Do a proper side-by-side comparison of all three models on accuracy, F1, and financial performance metrics</div>
             <div class="item-who"><span class="who-pill">Varun</span><span class="who-pill">Shreyas</span></div>
           </div>
         </div>
@@ -334,10 +335,10 @@
 
   <!-- PHASE 4 -->
   <div class="section">
-    <div class="section-title">Phase 4 — Explainability and backtesting (Target: July 12)</div>
+    <div class="section-title">Phase 4 - Explainability and backtesting (Target: July 12)</div>
     <div class="phase">
       <div class="phase-header">
-        <span class="phase-badge badge-now">Not started — critical gap</span>
+        <span class="phase-badge badge-now">Not started yet - critical</span>
         <span class="phase-title">SHAP explainability</span>
         <span class="phase-date">Target: July 12</span>
       </div>
@@ -345,22 +346,22 @@
         <div class="item next-item">
           <i class="ti ti-arrow-right item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Apply SHAP to the XGBoost model and generate per-prediction waterfall plots</div>
-            <div class="item-sub">Feature importance values already exist — SHAP per-prediction breakdowns do not. Required for Grade A</div>
+            <div class="item-text">Apply SHAP to the XGBoost model to produce per-prediction waterfall plots showing what drove each signal</div>
+            <div class="item-sub">We already have global feature importance but SHAP at the individual prediction level is what the project requires for a Grade A</div>
             <div class="item-who"><span class="who-pill">Kanwal</span><span class="who-pill">Ruben</span></div>
           </div>
         </div>
         <div class="item todo">
           <i class="ti ti-circle-dashed item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Apply SHAP to LSTM and TFT — produce daily and weekly aggregated views</div>
+            <div class="item-text">Extend SHAP to the LSTM and TFT models and produce aggregated daily and weekly views</div>
             <div class="item-who"><span class="who-pill">Abhijit</span><span class="who-pill">Shreyas</span></div>
           </div>
         </div>
         <div class="item todo">
           <i class="ti ti-circle-dashed item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Expose SHAP values through the API and display them on each stock prediction page in the dashboard</div>
+            <div class="item-text">Serve SHAP values through the API so the frontend can show a proper explanation panel on each stock page</div>
             <div class="item-who"><span class="who-pill">Ruben</span><span class="who-pill">Varun</span></div>
           </div>
         </div>
@@ -369,7 +370,7 @@
 
     <div class="phase">
       <div class="phase-header">
-        <span class="phase-badge badge-now">Partial — needs upgrade</span>
+        <span class="phase-badge badge-now">Partially done, needs upgrading</span>
         <span class="phase-title">Walk-forward backtesting engine</span>
         <span class="phase-date">Target: July 12</span>
       </div>
@@ -377,23 +378,23 @@
         <div class="item done">
           <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Basic per-ticker backtest comparing strategy vs buy-and-hold cumulative return</div>
-            <div class="item-sub">Results in backtest_daily.csv and rendered in frontend charts</div>
+            <div class="item-text">Built a basic per-ticker backtest that compares the model strategy against a buy-and-hold baseline over time</div>
+            <div class="item-sub">Results are stored in backtest_daily.csv and shown as charts in the frontend</div>
             <div class="item-who"><span class="who-pill">Ruben</span><span class="who-pill">Varun</span></div>
           </div>
         </div>
         <div class="item next-item">
           <i class="ti ti-arrow-right item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Upgrade to true walk-forward backtest with transaction cost modelling and position sizing</div>
-            <div class="item-sub">Required for Grade A. Current backtest has no rolling re-training window or transaction costs</div>
+            <div class="item-text">Upgrade to a proper walk-forward backtest that includes transaction costs and realistic position sizing</div>
+            <div class="item-sub">The current version does not re-train on a rolling window and does not account for any trading costs, which inflates the returns</div>
             <div class="item-who"><span class="who-pill">Ruben</span></div>
           </div>
         </div>
         <div class="item todo">
           <i class="ti ti-circle-dashed item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Compute and report Sharpe ratio, maximum drawdown, and Calmar ratio vs benchmark</div>
+            <div class="item-text">Calculate and display Sharpe ratio, maximum drawdown, and Calmar ratio compared against the benchmark</div>
             <div class="item-who"><span class="who-pill">Ruben</span><span class="who-pill">Kanwal</span></div>
           </div>
         </div>
@@ -403,26 +404,26 @@
 
   <!-- PHASE 5 -->
   <div class="section">
-    <div class="section-title">Phase 5 — Macro signal integration (Target: July 5 — mandatory requirement)</div>
+    <div class="section-title">Phase 5 - Macro signals (Target: July 5, mandatory)</div>
     <div class="phase">
       <div class="phase-header">
-        <span class="phase-badge badge-now">Not started — mandatory</span>
-        <span class="phase-title">Macro data from FRED API</span>
+        <span class="phase-badge badge-now">Not started yet</span>
+        <span class="phase-title">Macro data from the FRED API</span>
         <span class="phase-date">Target: July 5</span>
       </div>
       <div class="items">
         <div class="item next-item">
           <i class="ti ti-arrow-right item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Fetch VIX, yield-curve slope, and DXY from FRED API and align to daily trading dates</div>
-            <div class="item-sub">Fourth required signal type from the project spec. Currently only OHLCV, technicals, and sentiment are present</div>
+            <div class="item-text">Pull VIX, yield curve slope, and DXY from the FRED API and align everything to daily trading dates</div>
+            <div class="item-sub">This is the fourth required signal type in the project spec. At the moment only price, technical, and sentiment signals are in the model</div>
             <div class="item-who"><span class="who-pill">Kanwal</span><span class="who-pill">Shreyas</span></div>
           </div>
         </div>
         <div class="item todo">
           <i class="ti ti-circle-dashed item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Add macro features to the training dataset and retrain all three models to measure impact</div>
+            <div class="item-text">Add the macro features to the training dataset and retrain all three models to see how much they help</div>
             <div class="item-who"><span class="who-pill">Kanwal</span></div>
           </div>
         </div>
@@ -432,39 +433,39 @@
 
   <!-- PHASE 6 -->
   <div class="section">
-    <div class="section-title">Phase 6 — Platform and deployment (completed)</div>
+    <div class="section-title">Phase 6 - Platform and deployment (done)</div>
     <div class="phase">
       <div class="phase-header">
         <span class="phase-badge badge-done">Completed</span>
-        <span class="phase-title">FastAPI backend, Next.js frontend, and cron service</span>
-        <span class="phase-date">June 17–19</span>
+        <span class="phase-title">FastAPI backend, Next.js frontend, and live cron service</span>
+        <span class="phase-date">June 17 to 19</span>
       </div>
       <div class="items">
         <div class="item done">
           <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">FastAPI with Alembic migrations and routers for stocks, signals, backtest, and results — deployed on Render</div>
+            <div class="item-text">Built a FastAPI backend with Alembic database migrations and separate routers for stocks, signals, backtest results, and model outputs. Deployed on Render with Supabase as the database</div>
             <div class="item-who"><span class="who-pill">Ruben</span><span class="who-pill">Abhijit</span><span class="who-pill">Varun</span></div>
           </div>
         </div>
         <div class="item done">
           <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Next.js dashboard with stock cards, signal feed, sentiment heatmap, backtest charts, and per-stock detail pages</div>
+            <div class="item-text">Built the Next.js dashboard with stock cards, a live signal feed, a sentiment heatmap, backtest charts, and individual pages for each stock</div>
             <div class="item-who"><span class="who-pill">Varun</span></div>
           </div>
         </div>
         <div class="item done">
           <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">3-hour cron job on Render fetching live Marketaux sentiment and refreshing predictions in the database</div>
+            <div class="item-text">Set up a cron service that runs every 3 hours on Render, fetches the latest sentiment from Marketaux, and updates the predictions in the database</div>
             <div class="item-who"><span class="who-pill">Abhijit</span></div>
           </div>
         </div>
         <div class="item now">
           <i class="ti ti-clock item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Add SHAP breakdown panel to each stock prediction page once SHAP values are computed</div>
+            <div class="item-text">Add a SHAP explanation panel to each stock page once the SHAP values are ready</div>
             <div class="item-who"><span class="who-pill">Varun</span><span class="who-pill">Ruben</span></div>
           </div>
         </div>
@@ -474,31 +475,31 @@
 
   <!-- PHASE 7 -->
   <div class="section">
-    <div class="section-title">Phase 7 — Final demo and report (Aug 3 and Aug 18)</div>
+    <div class="section-title">Phase 7 - Final demo and report (Aug 3 and Aug 18)</div>
     <div class="phase">
       <div class="phase-header">
-        <span class="phase-badge badge-next">Upcoming — Aug 3</span>
-        <span class="phase-title">Final demo (15 min, 25% of grade)</span>
+        <span class="phase-badge badge-next">Upcoming: Aug 3</span>
+        <span class="phase-title">Final demo (15 minutes, worth 25% of the grade)</span>
       </div>
       <div class="items">
         <div class="item todo">
           <i class="ti ti-circle-dashed item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Show all three models running live with accuracy, backtest, and KPI results side by side</div>
+            <div class="item-text">Demo all three models running live in the dashboard with their accuracy, backtest performance, and KPIs visible at the same time</div>
             <div class="item-who"><span class="who-pill">All</span></div>
           </div>
         </div>
         <div class="item todo">
           <i class="ti ti-circle-dashed item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Demonstrate SHAP explanations per prediction in the live dashboard</div>
+            <div class="item-text">Show the SHAP explanation panel working on a live prediction so the examiners can see how the explainability layer fits into the product</div>
             <div class="item-who"><span class="who-pill">Ruben</span><span class="who-pill">Varun</span></div>
           </div>
         </div>
         <div class="item todo">
           <i class="ti ti-circle-dashed item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Show Sharpe ratio, max drawdown, and Calmar ratio vs buy-and-hold benchmark in the dashboard</div>
+            <div class="item-text">Display the Sharpe ratio, max drawdown, and Calmar ratio for each model so the financial performance is easy to interpret</div>
             <div class="item-who"><span class="who-pill">Ruben</span><span class="who-pill">Kanwal</span></div>
           </div>
         </div>
@@ -507,21 +508,21 @@
 
     <div class="phase">
       <div class="phase-header">
-        <span class="phase-badge badge-next">Upcoming — Aug 18</span>
+        <span class="phase-badge badge-next">Upcoming: Aug 18</span>
         <span class="phase-title">Final report (30%) and individual contribution assessment (20%)</span>
       </div>
       <div class="items">
         <div class="item todo">
           <i class="ti ti-circle-dashed item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Write final report with all sections — architecture, data pipeline, models, explainability, backtesting, evaluation</div>
-            <div class="item-who"><span class="who-pill">All — each person writes their section</span></div>
+            <div class="item-text">Each person writes their own section of the report covering architecture, the data pipeline, models, explainability, backtesting, and evaluation</div>
+            <div class="item-who"><span class="who-pill">All</span></div>
           </div>
         </div>
         <div class="item todo">
           <i class="ti ti-circle-dashed item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Complete AI usage log (Appendix A) with tool, prompt, output, and critical assessment for every significant AI interaction</div>
+            <div class="item-text">Fill in the AI usage log (Appendix A) documenting every significant AI interaction with the tool used, the prompt, the output, and a critical assessment of it</div>
             <div class="item-who"><span class="who-pill">All</span></div>
           </div>
         </div>
@@ -530,23 +531,23 @@
   </div>
 
   <div class="alert-red">
-    <strong>Three gaps to close before the final demo on August 3:</strong><br>
-    1. Macro signals (VIX, yield curve, DXY via FRED) are entirely missing — this is a mandatory requirement. Kanwal and Shreyas to own this by July 5.<br>
-    2. SHAP has not been applied to any model yet — without it the project cannot score above Grade C on explainability. Kanwal to start with XGBoost SHAP this week.<br>
-    3. The LSTM trains only on raw OHLCV and cannot be compared to XGBoost. Shreyas to connect it to the merged feature set by July 5.
+    <strong>Three things that need to happen before August 3:</strong><br>
+    1. Macro signals from FRED (VIX, yield curve, DXY) are completely missing and are required by the spec. Kanwal and Shreyas need to get this done by July 5.<br>
+    2. SHAP has not been applied to any model yet. Without it the project will not score above a Grade C on explainability. Kanwal should start with the XGBoost model this week.<br>
+    3. The LSTM is only training on raw price data right now. Shreyas needs to connect it to the full feature set so it can be properly compared to XGBoost and TFT.
   </div>
 
   <!-- TEAM -->
   <div class="section" style="margin-top: 2.5rem;">
-    <div class="section-title">Team responsibilities</div>
+    <div class="section-title">Who is doing what</div>
     <div class="two-col">
 
       <div class="person-card">
         <div class="person-header">
           <div class="avatar av-v">VD</div>
-          <div><div class="person-name">Varun Dutia</div><div class="person-role">Project lead — architecture and integration</div></div>
+          <div><div class="person-name">Varun Dutia</div><div class="person-role">Project lead, architecture and integration</div></div>
         </div>
-        <div class="person-body">Varun created the repo and drove every integration milestone. He built the GDELT news downloader, the full end-to-end pipeline notebook, the entire Next.js frontend, the FastAPI structure, the Supabase seeding script, deployment to Render, and integrated Gemini for stock narration. He merged all branches and kept the project moving. Going forward he is co-responsible for TFT with Mateen and will wire SHAP values into the dashboard once they are ready.</div>
+        <div class="person-body">Varun has been the glue holding the project together. He set up the repo, built the GDELT news downloader, wrote the end-to-end pipeline notebook, built the entire Next.js frontend from scratch, set up the FastAPI backend structure, handled deployment to Render, wrote the database seeding script, and added Gemini-generated summaries for each stock. He merged every branch and kept things moving when the team got stuck. Going forward he is sharing responsibility for the TFT model with Mateen and will connect the SHAP values to the dashboard once they are ready.</div>
         <div class="tag-row">
           <span class="tag tag-green">Architecture</span>
           <span class="tag tag-green">News pipeline</span>
@@ -562,7 +563,7 @@
           <div class="avatar av-m">MR</div>
           <div><div class="person-name">Abdul Mateen Rahmat</div><div class="person-role">Sentiment analysis lead</div></div>
         </div>
-        <div class="person-body">Mateen owns the entire sentiment pipeline. He built the Reddit collector using Arctic Shift and PRAW, wrote the FinBERT scoring scripts for both news and Reddit data, and produced the merge script that adds the daily sentiment feature to the training dataset. His work is the reason sentiment exists as a model input at all. Going forward he is co-responsible for TFT with Varun and will write the sentiment section of the final report.</div>
+        <div class="person-body">Mateen is responsible for everything related to sentiment. He built the Reddit data collector using two sources (Arctic Shift for historical posts and PRAW for recent ones), wrote the FinBERT scoring scripts for both news and Reddit, and built the merge script that adds daily sentiment as a training feature. Without his work, sentiment would not exist in the model at all. He is now working with Varun on the TFT model and will take the lead on the sentiment section of the final report.</div>
         <div class="tag-row">
           <span class="tag tag-green">Reddit pipeline</span>
           <span class="tag tag-green">FinBERT scoring</span>
@@ -577,7 +578,7 @@
           <div class="avatar av-r">RA</div>
           <div><div class="person-name">Ruben Aayush</div><div class="person-role">Backend API and backtesting</div></div>
         </div>
-        <div class="person-body">Ruben built the FastAPI application with all database models, schemas, Alembic migrations, and routers for stocks, signals, backtest, and results. He also wrote the initial backtest module. His code is the API layer the frontend consumes. The most critical next items are upgrading the backtest to walk-forward with transaction costs, and adding SHAP values to the API so the dashboard can display per-prediction explanations.</div>
+        <div class="person-body">Ruben built the FastAPI application including all the database models, schemas, Alembic migrations, and API routers that the frontend talks to. He also wrote the initial backtest module. His code is what powers the backend of the whole platform. The two most important things on his plate right now are upgrading the backtest to a proper walk-forward approach with transaction costs, and wiring SHAP values through the API so the dashboard can show real explanations per prediction.</div>
         <div class="tag-row">
           <span class="tag tag-green">FastAPI</span>
           <span class="tag tag-green">Database schema</span>
@@ -592,12 +593,12 @@
           <div class="avatar av-a">AB</div>
           <div><div class="person-name">Abhijit Bastia</div><div class="person-role">Live prediction service</div></div>
         </div>
-        <div class="person-body">Abhijit built the production cron service that keeps the platform live. It runs every 3 hours on Render, fetches real-time sentiment from Marketaux, computes features, runs the predictor, and upserts results to the database. The next priority is integrating the LSTM model into this live pipeline so all three models produce live predictions, and working with Shreyas to apply SHAP to the LSTM.</div>
+        <div class="person-body">Abhijit built the cron service that keeps the platform live and up to date. It runs every three hours on Render, pulls the latest news sentiment from Marketaux, computes the features, runs the predictor, and writes the results back to the database. This is what makes the dashboard show today's signals rather than stale data from whenever the model was last trained. The next step for him is getting the LSTM wired into this same pipeline so all three models contribute to the live predictions.</div>
         <div class="tag-row">
           <span class="tag tag-green">Cron service</span>
           <span class="tag tag-green">Live prediction</span>
           <span class="tag tag-green">Marketaux integration</span>
-          <span class="tag tag-amber">LSTM live integration</span>
+          <span class="tag tag-amber">LSTM integration</span>
           <span class="tag tag-amber">SHAP for LSTM</span>
         </div>
       </div>
@@ -607,13 +608,13 @@
           <div class="avatar av-k">KK</div>
           <div><div class="person-name">Kanwal Kumar</div><div class="person-role">XGBoost model and feature engineering</div></div>
         </div>
-        <div class="person-body">Kanwal did the core XGBoost work — training the combined stock-and-news model, building the training dataset parquet, running per-ticker prediction experiments, and producing the multi-stock pkl now in production. The next items are adding SHAP to the XGBoost model (highest-priority gap) and pulling in macro signals from FRED (VIX, yield curve, DXY) which are required by the project spec and completely absent right now.</div>
+        <div class="person-body">Kanwal did the bulk of the XGBoost work. He trained the first version of the combined stock and news model, built the training dataset, ran prediction experiments for individual tickers, and produced the multi-stock model file that is currently running in production. His notebooks also worked out how to properly join news sentiment data with stock prices. His top priority right now is adding SHAP to the XGBoost model, followed by pulling in macro signals from FRED which the project spec requires and which are not in the model yet.</div>
         <div class="tag-row">
           <span class="tag tag-green">XGBoost training</span>
           <span class="tag tag-green">Feature engineering</span>
           <span class="tag tag-green">Training dataset</span>
           <span class="tag tag-amber">SHAP for XGBoost</span>
-          <span class="tag tag-amber">Macro signals (FRED)</span>
+          <span class="tag tag-amber">Macro signals</span>
         </div>
       </div>
 
@@ -622,7 +623,7 @@
           <div class="avatar av-s">SS</div>
           <div><div class="person-name">Shreyas Shingare</div><div class="person-role">LSTM model and streaming infrastructure</div></div>
         </div>
-        <div class="person-body">Shreyas built the LSTM streaming architecture — a full Kafka pipeline with Docker Compose, a producer that fetches yfinance data, a consumer running LSTM inference, structured logging, and config management. The main gap is that the LSTM trains only on raw OHLCV and is isolated from the sentiment and macro features the rest of the team built. Connecting these is the priority, followed by applying SHAP to the LSTM.</div>
+        <div class="person-body">Shreyas built the real-time streaming infrastructure for the LSTM. Using Kafka and Docker Compose, he set up a producer that fetches live stock data from yfinance and a consumer that runs LSTM inference, all with proper logging and configuration. It is solid infrastructure and a good foundation. The main issue is that the LSTM currently only sees raw price data and is disconnected from the sentiment and macro features everyone else built. Getting that connection made is the priority so all three models can be compared properly.</div>
         <div class="tag-row">
           <span class="tag tag-green">LSTM architecture</span>
           <span class="tag tag-green">Kafka pipeline</span>
