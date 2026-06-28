@@ -51,6 +51,7 @@
   .deadline.now .dl-date { color: #854f0b; }
   .dl-label { font-size: 13px; color: #1a1a18; line-height: 1.4; }
   .deadline.now .dl-label { color: #633806; }
+  .dl-sub { font-size: 11px; color: #854f0b; margin-top: 3px; font-weight: 500; }
 
   .section { margin-bottom: 2.5rem; }
   .section-title { font-size: 12px; font-weight: 500; color: #5f5e5a; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1rem; padding-bottom: 6px; border-bottom: 0.5px solid #d3d1c7; }
@@ -163,14 +164,45 @@
     The team presented the interim demo on June 23 and showed a working data pipeline, a trained XGBoost model, a live frontend, and the cron service running in production. The next focus is closing three gaps before the final demo on August 3.
   </div>
 
-  <div class="deadline-row">
-    <div class="deadline done"><div class="dl-date">May 29</div><div class="dl-label">Repo created</div></div>
-    <div class="deadline done"><div class="dl-date">June 8</div><div class="dl-label">Project plan due</div></div>
-    <div class="deadline done"><div class="dl-date">June 23</div><div class="dl-label">Interim demo done</div></div>
-    <div class="deadline now"><div class="dl-date">June 24</div><div class="dl-label">Plan finalised</div></div>
-    <div class="deadline"><div class="dl-date">Aug 3</div><div class="dl-label">Final demo</div></div>
-    <div class="deadline"><div class="dl-date">Aug 18</div><div class="dl-label">Final report</div></div>
-  </div>
+  <div class="deadline-row" id="milestones"></div>
+  <script>
+    (function() {
+      var milestones = [
+        { date: '2026-05-29', label: 'Repo created' },
+        { date: '2026-06-08', label: 'Project plan due' },
+        { date: '2026-06-23', label: 'Interim demo' },
+        { date: '2026-06-24', label: 'Plan finalised' },
+        { date: '2026-08-03', label: 'Final demo' },
+        { date: '2026-08-18', label: 'Final report' },
+      ];
+      var today = new Date();
+      today.setHours(0,0,0,0);
+      var nextIdx = -1;
+      for (var i = 0; i < milestones.length; i++) {
+        var d = new Date(milestones[i].date);
+        if (d >= today) { nextIdx = i; break; }
+      }
+      var container = document.getElementById('milestones');
+      milestones.forEach(function(m, i) {
+        var d = new Date(m.date);
+        var isPast = d < today;
+        var isNext = i === nextIdx;
+        var div = document.createElement('div');
+        div.className = 'deadline' + (isPast ? ' done' : '') + (isNext ? ' now' : '');
+        var month = d.toLocaleString('default', { month: 'short' });
+        var day = d.getDate();
+        var daysAway = Math.round((d - today) / 86400000);
+        var sublabel = '';
+        if (isNext) {
+          sublabel = daysAway === 0 ? 'Today' : 'In ' + daysAway + ' day' + (daysAway === 1 ? '' : 's');
+        }
+        div.innerHTML = '<div class="dl-date">' + month + ' ' + day + '</div>'
+          + '<div class="dl-label">' + m.label + '</div>'
+          + (sublabel ? '<div class="dl-sub">' + sublabel + '</div>' : '');
+        container.appendChild(div);
+      });
+    })();
+  </script>
 
   <!-- PHASE 1 -->
   <div class="section">
