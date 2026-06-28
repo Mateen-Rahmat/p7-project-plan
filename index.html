@@ -281,6 +281,14 @@
             <div class="item-who"><span class="who-pill">Mateen</span></div>
           </div>
         </div>
+        <div class="item done">
+          <i class="ti ti-circle-check item-icon"></i>
+          <div class="item-content">
+            <div class="item-text">Fixed sentiment coverage imbalance: retrained the pipeline to use fused Reddit and news sentiment, replacing zero-fill with a 3-day forward-fill with exponential decay</div>
+            <div class="item-sub">Coverage improved from 4 to 36% (news only) up to 63 to 84% per ticker. JPM went from 0% to 26%. A has_signal binary feature was added so the model knows when it has real data versus carried-forward values. New model: 52.0% accuracy and 0.525 AUC vs 51.5% and 0.518 previously</div>
+            <div class="item-who"><span class="who-pill">Mateen</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -298,9 +306,17 @@
         <div class="item done">
           <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Trained XGBoost on 16 features including technical indicators and the FinBERT sentiment score, using an 80/20 time-based split to avoid data leakage</div>
-            <div class="item-sub">Achieves 51.5% accuracy and a 0.518 AUC-ROC score on 2,216 test rows. Saved to xgb_sentiment_model.pkl</div>
+            <div class="item-text">Trained XGBoost on 16 features including technical indicators and FinBERT sentiment, using an 80/20 time-based split</div>
+            <div class="item-sub">Initial model: 51.5% accuracy, 0.518 AUC-ROC on 2,216 test rows</div>
             <div class="item-who"><span class="who-pill">Kanwal</span><span class="who-pill">Varun</span></div>
+          </div>
+        </div>
+        <div class="item done">
+          <i class="ti ti-circle-check item-icon"></i>
+          <div class="item-content">
+            <div class="item-text">Retrained XGBoost with fused sentiment, forward-fill decay, and has_signal feature — improving accuracy to 52.0% and AUC-ROC to 0.525</div>
+            <div class="item-sub">Saved to xgb_fused_sentiment_model.pkl. Cron service, API schema, and Supabase migration updated to match</div>
+            <div class="item-who"><span class="who-pill">Mateen</span></div>
           </div>
         </div>
         <div class="item done">
