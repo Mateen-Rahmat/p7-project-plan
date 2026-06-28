@@ -363,6 +363,58 @@
         </div>
       </div>
     </div>
+
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-badge badge-now">Not started yet - Grade A requirement</span>
+        <span class="phase-title">Cross-validation and hyperparameter tuning</span>
+        <span class="phase-date">Target: July 12</span>
+      </div>
+      <div class="items">
+        <div class="item next-item">
+          <i class="ti ti-arrow-right item-icon"></i>
+          <div class="item-content">
+            <div class="item-text">Replace the single 80/20 train/test split with proper time-series cross-validation across all three models</div>
+            <div class="item-sub">The rubric explicitly separates "proper cross-validation" as the line between Grade B and Grade A on model quality. The current XGBoost split alone is categorised as Grade C</div>
+            <div class="item-who"><span class="who-pill">Kanwal</span><span class="who-pill">Shreyas</span><span class="who-pill">Varun</span></div>
+          </div>
+        </div>
+        <div class="item todo">
+          <i class="ti ti-circle-dashed item-icon"></i>
+          <div class="item-content">
+            <div class="item-text">Run a hyperparameter search for each model and write up what was tried, what was selected, and why</div>
+            <div class="item-sub">This needs to appear in the final report. Without a documented tuning process the project cannot score Grade A on model quality even if the models perform well</div>
+            <div class="item-who"><span class="who-pill">Kanwal</span><span class="who-pill">Shreyas</span><span class="who-pill">Mateen</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-badge badge-now">Not started yet - Grade A requirement</span>
+        <span class="phase-title">Preprocessing documentation and lookahead audit</span>
+        <span class="phase-date">Target: July 12</span>
+      </div>
+      <div class="items">
+        <div class="item next-item">
+          <i class="ti ti-arrow-right item-icon"></i>
+          <div class="item-content">
+            <div class="item-text">Write up how each of the four signal types was collected, cleaned, and aligned, including the decisions made and why</div>
+            <div class="item-sub">The rubric for Grade A on data pipeline says "documented" preprocessing. This means a written section in the report, not just working code</div>
+            <div class="item-who"><span class="who-pill">Mateen</span><span class="who-pill">Varun</span><span class="who-pill">Kanwal</span></div>
+          </div>
+        </div>
+        <div class="item todo">
+          <i class="ti ti-circle-dashed item-icon"></i>
+          <div class="item-content">
+            <div class="item-text">Audit the feature engineering code to confirm no future data leaks into any training window</div>
+            <div class="item-sub">Rolling indicators like SMA and volatility can silently introduce lookahead if the shift logic is off by one. This needs to be verified and stated explicitly in the report</div>
+            <div class="item-who"><span class="who-pill">Kanwal</span><span class="who-pill">Ruben</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- PHASE 4 -->
@@ -555,6 +607,61 @@
           <i class="ti ti-circle-dashed item-icon"></i>
           <div class="item-content">
             <div class="item-text">Fill in the AI usage log (Appendix A) documenting every significant AI interaction with the tool used, the prompt, the output, and a critical assessment of it</div>
+            <div class="item-sub">Format: Tool (version), Prompt: '...', Date. Every significant interaction counts, not just code generation</div>
+            <div class="item-who"><span class="who-pill">All — ongoing from now</span></div>
+          </div>
+        </div>
+        <div class="item todo">
+          <i class="ti ti-circle-dashed item-icon"></i>
+          <div class="item-content">
+            <div class="item-text">Add the preprocessing documentation and hyperparameter tuning writeup as dedicated sections in the report</div>
+            <div class="item-sub">Both are graded directly in the rubric and cannot just be implied by the code</div>
+            <div class="item-who"><span class="who-pill">Kanwal</span><span class="who-pill">Mateen</span><span class="who-pill">Varun</span></div>
+          </div>
+        </div>
+        <div class="item todo">
+          <i class="ti ti-circle-dashed item-icon"></i>
+          <div class="item-content">
+            <div class="item-text">Include cumulative return alongside Sharpe ratio, max drawdown, and Calmar ratio in the financial KPI section</div>
+            <div class="item-sub">The spec lists cumulative return explicitly as a required KPI — it is not in the plan yet</div>
+            <div class="item-who"><span class="who-pill">Ruben</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI STRATEGY -->
+  <div class="section">
+    <div class="section-title">AI strategy (required in project plan document)</div>
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-badge badge-now">Not started yet - mandatory</span>
+        <span class="phase-title">AI strategy section and weekly show-and-tell log</span>
+        <span class="phase-date">Ongoing until Aug 18</span>
+      </div>
+      <div class="items">
+        <div class="item next-item">
+          <i class="ti ti-arrow-right item-icon"></i>
+          <div class="item-content">
+            <div class="item-text">Write the AI Strategy section for the project plan document explaining how the team is using AI tools responsibly and what is off limits</div>
+            <div class="item-sub">The spec says this must be in the Project Plan document itself, not just the final report. It should cover which tools are used, for what purposes, and how outputs are critically evaluated before being accepted</div>
+            <div class="item-who"><span class="who-pill">Varun</span><span class="who-pill">Mateen</span></div>
+          </div>
+        </div>
+        <div class="item todo">
+          <i class="ti ti-circle-dashed item-icon"></i>
+          <div class="item-content">
+            <div class="item-text">Keep the AI usage log updated after every weekly show-and-tell session as required by the spec</div>
+            <div class="item-sub">The spec requires an AI usage update at every weekly session. Someone needs to own keeping this current week to week, not just filling it in at the end</div>
+            <div class="item-who"><span class="who-pill">All — rotating per week</span></div>
+          </div>
+        </div>
+        <div class="item todo">
+          <i class="ti ti-circle-dashed item-icon"></i>
+          <div class="item-content">
+            <div class="item-text">For the final report, write a reflective assessment of how AI tools helped and where they fell short, not just a list of interactions</div>
+            <div class="item-sub">The rubric for Grade A on AI Strategy is "AI tools used critically, log complete and reflective" — a plain log without reflection scores Grade B at best</div>
             <div class="item-who"><span class="who-pill">All</span></div>
           </div>
         </div>
@@ -563,10 +670,13 @@
   </div>
 
   <div class="alert-red">
-    <strong>Three things that need to happen before August 3:</strong><br>
-    1. Macro signals from FRED (VIX, yield curve, DXY) are completely missing and are required by the spec. Kanwal and Shreyas need to get this done by July 5.<br>
-    2. SHAP has not been applied to any model yet. Without it the project will not score above a Grade C on explainability. Kanwal should start with the XGBoost model this week.<br>
-    3. The LSTM is only training on raw price data right now. Shreyas needs to connect it to the full feature set so it can be properly compared to XGBoost and TFT.
+    <strong>Six gaps standing between the current state and a Grade A:</strong><br>
+    1. Macro signals (VIX, yield curve, DXY via FRED) are entirely missing and are a mandatory requirement. Kanwal and Shreyas to own this by July 5.<br>
+    2. SHAP has not been applied to any model. Without it the project scores Grade C on explainability regardless of everything else. Start with XGBoost this week.<br>
+    3. The LSTM only trains on raw price data. It needs connecting to the full feature set before any meaningful three-model comparison is possible.<br>
+    4. Cross-validation is missing across all three models. The current 80/20 split puts model quality at Grade C on the rubric. Time-series cross-validation needs to replace it.<br>
+    5. Preprocessing decisions are not documented anywhere in writing. The rubric grades this directly and working code is not a substitute for a written explanation.<br>
+    6. There is no AI Strategy section in the project plan document and no one is keeping the weekly show-and-tell log. Both are explicitly required and graded.
   </div>
 
   <!-- TEAM -->
