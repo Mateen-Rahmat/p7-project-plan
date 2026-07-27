@@ -113,7 +113,7 @@
 <div class="page">
 
   <h1>SHAP Explainability Report</h1>
-  <p class="subtitle">COMP47250 P7 — Explainable Financial Forecasting Platform &nbsp;·&nbsp; Generated July 20, 2026</p>
+  <p class="subtitle">COMP47250 P7 — Explainable Financial Forecasting Platform &nbsp;·&nbsp; Generated July 27, 2026</p>
 
   <div class="chip-row">
     <span class="chip chip-purple">XGBoost · TreeExplainer</span>
@@ -124,7 +124,7 @@
   </div>
 
   <div class="alert-green">
-    SHAP analysis confirms <strong>volatility_10 and RSI</strong> are the dominant signals across all three model families. Sentiment ranks 18th of 20 features — its contribution is real but modest relative to price-derived signals. LSTM Sharpe of 2.37 exceeds the rubric minimum.
+    SHAP analysis on the retrained 30-ticker models shows <strong>macro signals (VIX, yield curve, DXY)</strong> now dominate all three model families, and <strong>fused_sentiment ranks 3rd of 20</strong> — the multi-signal fusion thesis is directly supported by the explanations. All three models post positive Sharpe (XGB 1.18, LSTM 0.67, TFT 0.65) after a return-alignment fix and an XGB hysteresis filter.
   </div>
 
   <!-- KEY FINDINGS -->
@@ -133,34 +133,34 @@
     <div class="card">
       <div class="findings-grid">
         <div class="finding">
-          <h4>Volatility dominates universally</h4>
-          <p><strong>volatility_10</strong> is the #1 feature across all three models (avg SHAP 0.112). Recent price turbulence is the strongest short-term directional signal regardless of architecture.</p>
-          <div class="tag-row"><span class="tag tag-purple">XGB #1</span><span class="tag tag-teal">LSTM #1</span><span class="tag tag-amber">TFT #3</span></div>
+          <h4>VIX is the #1 signal overall</h4>
+          <p><strong>vix</strong> tops the cross-model average (0.152) — #1 for XGBoost and TFT, #2 for LSTM. Market-wide fear gauges out-predict any per-ticker technical indicator for next-day direction.</p>
+          <div class="tag-row"><span class="tag tag-purple">XGB #1</span><span class="tag tag-teal">LSTM #2</span><span class="tag tag-amber">TFT #1</span></div>
         </div>
         <div class="finding">
-          <h4>XGBoost ignores macro entirely</h4>
-          <p>XGBoost assigns <strong>0.000 SHAP to yield_curve and DXY</strong>. Tree splits saturate on per-ticker price features. LSTM and TFT exploit macro via sequence memory (yield_curve ranks #2 for LSTM).</p>
-          <div class="tag-row"><span class="tag tag-blue">LSTM yield_curve: 0.102</span><span class="tag tag-red">XGB yield_curve: 0.000</span></div>
+          <h4>Macro trio occupies 3 of the top 4 slots</h4>
+          <p><strong>vix, yield_curve and dxy</strong> rank 1st, 2nd and 4th by average |SHAP|. After the 30-ticker retrain, all three architectures — including XGBoost, which previously assigned macro zero — lean on macro state.</p>
+          <div class="tag-row"><span class="tag tag-blue">TFT yield_curve: 0.214</span><span class="tag tag-blue">XGB yield_curve: 0.077</span></div>
         </div>
         <div class="finding">
-          <h4>Each model learns a different return lag</h4>
-          <p>XGBoost favours <strong>ret_1</strong> (immediate momentum); TFT favours <strong>ret_3</strong>; LSTM favours <strong>ret_5</strong>. Architecture shape determines which lag is most predictive.</p>
-          <div class="tag-row"><span class="tag tag-purple">XGB → ret_1</span><span class="tag tag-teal">LSTM → ret_5</span><span class="tag tag-amber">TFT → ret_3</span></div>
+          <h4>Sentiment ranks 3rd of 20 features</h4>
+          <p><strong>fused_sentiment</strong> (FinBERT news + Reddit fusion) averages 0.081 |SHAP| and sits in the top 5 of every individual model — direct evidence that the alternative-data signal earns its place in the feature set.</p>
+          <div class="tag-row"><span class="tag tag-amber">Rank 3 / 20</span><span class="tag tag-green">Top 5 in all 3 models</span></div>
         </div>
         <div class="finding">
-          <h4>Sentiment ranks 18th of 20 features</h4>
-          <p><strong>fused_sentiment</strong> avg importance = 0.030 — real and non-zero, but below most price-derived signals. Its marginal contribution is meaningful; it is not the dominant driver.</p>
-          <div class="tag-row"><span class="tag tag-amber">Rank 18 / 20</span><span class="tag tag-blue">Avg SHAP: 0.030</span></div>
+          <h4>LSTM is the macro-sequence specialist</h4>
+          <p>LSTM puts <strong>yield_curve</strong> #1 (0.146) and is the only model with <strong>ret_3</strong> in its top 3 — sequence memory favours slower-moving macro spreads and multi-day momentum over point-in-time technicals.</p>
+          <div class="tag-row"><span class="tag tag-teal">LSTM → yield_curve, ret_3</span></div>
         </div>
         <div class="finding">
-          <h4>RSI: universal mean-reversion signal</h4>
-          <p>RSI ranks #2 overall (avg 0.084), scoring highly for XGBoost and TFT (~0.11 each). Mean-reversion awareness is learned independently across all three architectures.</p>
-          <div class="tag-row"><span class="tag tag-purple">XGB: 0.112</span><span class="tag tag-teal">LSTM: 0.052</span><span class="tag tag-amber">TFT: 0.088</span></div>
+          <h4>Explanations shifted after the class-balance fixes</h4>
+          <p>The prior (9-ticker, degenerate-prone) models leaned on volatility_10 and RSI. Retraining with class weighting / balanced sampling moved attribution decisively to macro + sentiment — SHAP tracked the behaviour change.</p>
+          <div class="tag-row"><span class="tag tag-blue">volatility_10: #1 → #8</span><span class="tag tag-blue">rsi: #2 → #7</span></div>
         </div>
         <div class="finding">
-          <h4>MACD: the only full-consensus feature</h4>
-          <p>MACD is the single indicator that ranks in the top 5 for all three models individually — confirming its role as the most robust trend signal across model families.</p>
-          <div class="tag-row"><span class="tag tag-green">Top 5 in all 3 models</span></div>
+          <h4>All three strategies beat cash</h4>
+          <p>After fixing a return-alignment bug (signals were paid the prior day's return) and adding a validation-selected hysteresis filter to XGBoost, <strong>every model posts Sharpe &gt; 0</strong> — the rubric's key backtest requirement.</p>
+          <div class="tag-row"><span class="tag tag-purple">XGB 1.18</span><span class="tag tag-teal">LSTM 0.67</span><span class="tag tag-amber">TFT 0.65</span></div>
         </div>
       </div>
     </div>
@@ -191,7 +191,7 @@
 
   <!-- WEEKLY TRENDS -->
   <div class="section">
-    <div class="section-title">Feature importance over time — weekly mean |SHAP|</div>
+    <div class="section-title">Feature importance over time — monthly mean |SHAP| (top 5 global features)</div>
     <div class="card">
       <div class="card-body">
         <div class="chart-block">
@@ -208,11 +208,11 @@
         </div>
       </div>
       <div class="legend">
-        <div class="legend-item"><div class="legend-swatch" style="background:#e05050"></div>volatility_10</div>
-        <div class="legend-item"><div class="legend-swatch" style="background:#3b82f6"></div>rsi</div>
-        <div class="legend-item"><div class="legend-swatch" style="background:#16a34a"></div>ret_3</div>
-        <div class="legend-item"><div class="legend-swatch" style="background:#d97706"></div>ret_5</div>
-        <div class="legend-item"><div class="legend-swatch" style="background:#9333ea"></div>macd</div>
+        <div class="legend-item"><div class="legend-swatch" style="background:#e05050"></div>vix</div>
+        <div class="legend-item"><div class="legend-swatch" style="background:#3b82f6"></div>yield_curve</div>
+        <div class="legend-item"><div class="legend-swatch" style="background:#16a34a"></div>fused_sentiment</div>
+        <div class="legend-item"><div class="legend-swatch" style="background:#d97706"></div>dxy</div>
+        <div class="legend-item"><div class="legend-swatch" style="background:#9333ea"></div>ret_3</div>
       </div>
     </div>
   </div>
@@ -234,8 +234,7 @@
         </table>
       </div>
       <div class="note">
-        TFT excluded — predicted BUY 100% of the time (degenerate output). Needs retraining with class weighting or a confidence threshold.
-        LSTM Sharpe 2.37 satisfies the rubric's Sharpe &gt; 0 requirement.
+        All three models now backtest with Sharpe &gt; 0, satisfying the rubric requirement. Changes since the previous report: TFT retrained with class-weighted loss (was 99% BUY), LSTM retrained with a balanced sampler (was 97% BUY), a return-alignment bug fixed (signals were credited the prior day's return instead of the next day's), and XGBoost given a hysteresis signal filter (enter ≥ 0.58 confidence, exit &lt; 0.42) selected on a validation slice with no test lookahead.
       </div>
     </div>
   </div>
@@ -270,32 +269,33 @@
 
 <script>
 const GLOBAL = [
-  {feature:"volatility_10", xgb:0.11426, lstm:0.13298, tft:0.08805, avg:0.11176},
-  {feature:"rsi",           xgb:0.11160, lstm:0.05158, tft:0.08789, avg:0.08369},
-  {feature:"ret_3",         xgb:0.06560, lstm:0.06745, tft:0.10885, avg:0.08063},
-  {feature:"ret_5",         xgb:0.08353, lstm:0.10970, tft:0.04463, avg:0.07929},
-  {feature:"macd",          xgb:0.08531, lstm:0.08353, tft:0.05568, avg:0.07484},
-  {feature:"yield_curve",   xgb:0.00000, lstm:0.10213, tft:0.06739, avg:0.05651},
-  {feature:"volume_change", xgb:0.07515, lstm:0.02111, tft:0.06794, avg:0.05473},
-  {feature:"sma_10",        xgb:0.03681, lstm:0.05680, tft:0.05952, avg:0.05105},
-  {feature:"ret_1",         xgb:0.08466, lstm:0.02092, tft:0.02726, avg:0.04428},
-  {feature:"bb_lower",      xgb:0.06653, lstm:0.03027, tft:0.03302, avg:0.04327},
-  {feature:"ema_20",        xgb:0.02875, lstm:0.08244, tft:0.01692, avg:0.04270},
-  {feature:"ticker_id",     xgb:0.00000, lstm:0.02951, tft:0.08636, avg:0.03862},
-  {feature:"bb_upper",      xgb:0.05191, lstm:0.01404, tft:0.04519, avg:0.03705},
-  {feature:"dxy",           xgb:0.00000, lstm:0.06170, tft:0.03551, avg:0.03240},
-  {feature:"bb_mid",        xgb:0.03873, lstm:0.02482, tft:0.03203, avg:0.03186},
-  {feature:"ema_10",        xgb:0.04984, lstm:0.01485, tft:0.02621, avg:0.03030},
-  {feature:"sma_20",        xgb:0.06132, lstm:0.00739, tft:0.02215, avg:0.03029},
-  {feature:"fused_sentiment",xgb:0.04190,lstm:0.03214, tft:0.01472, avg:0.02959},
-  {feature:"has_signal",    xgb:0.00410, lstm:0.03479, tft:0.03425, avg:0.02438},
-  {feature:"vix",           xgb:0.00000, lstm:0.00914, tft:0.04088, avg:0.01667},
+  {feature:"vix", xgb:0.13222, lstm:0.09967, tft:0.22286, avg:0.15158},
+  {feature:"yield_curve", xgb:0.07663, lstm:0.14613, tft:0.21357, avg:0.14544},
+  {feature:"fused_sentiment", xgb:0.09108, lstm:0.07705, tft:0.07450, avg:0.08088},
+  {feature:"dxy", xgb:0.08048, lstm:0.05871, tft:0.07874, avg:0.07264},
+  {feature:"ret_3", xgb:0.04879, lstm:0.09571, tft:0.04735, avg:0.06395},
+  {feature:"volume_change", xgb:0.04621, lstm:0.05519, tft:0.03465, avg:0.04535},
+  {feature:"rsi", xgb:0.04790, lstm:0.02799, tft:0.05999, avg:0.04529},
+  {feature:"volatility_10", xgb:0.04586, lstm:0.03512, tft:0.05333, avg:0.04477},
+  {feature:"ret_5", xgb:0.06409, lstm:0.03641, tft:0.03081, avg:0.04377},
+  {feature:"macd", xgb:0.06424, lstm:0.03637, tft:0.02553, avg:0.04204},
+  {feature:"ticker_id", xgb:0.03644, lstm:0.05008, tft:0.03002, avg:0.03885},
+  {feature:"bb_lower", xgb:0.02819, lstm:0.06416, tft:0.01768, avg:0.03668},
+  {feature:"bb_upper", xgb:0.02972, lstm:0.04568, tft:0.02657, avg:0.03399},
+  {feature:"ret_1", xgb:0.05688, lstm:0.02238, tft:0.02229, avg:0.03385},
+  {feature:"has_signal", xgb:0.02517, lstm:0.04002, tft:0.01743, avg:0.02754},
+  {feature:"ema_20", xgb:0.02334, lstm:0.03223, tft:0.00670, avg:0.02076},
+  {feature:"sma_20", xgb:0.02903, lstm:0.01354, tft:0.01433, avg:0.01897},
+  {feature:"bb_mid", xgb:0.02475, lstm:0.02021, tft:0.00916, avg:0.01804},
+  {feature:"ema_10", xgb:0.03155, lstm:0.01628, tft:0.00592, avg:0.01792},
+  {feature:"sma_10", xgb:0.01743, lstm:0.02708, tft:0.00855, avg:0.01769},
 ];
 const KPIS = [
-  {model:"XGBoost",tag:"chip-purple",strat:-0.0457,bh:0.4636,sharpe:-0.6937,mdd:-0.1511,calmar:-0.3087,trades:891,period:"2025-06-12 → 2026-06-05"},
-  {model:"LSTM",   tag:"chip-teal",  strat:0.6756, bh:0.7141,sharpe:2.3667, mdd:-0.1292,calmar:4.5965, trades:113,period:"2025-04-28 → 2026-06-05"},
+  {model:"XGBoost",tag:"chip-purple",strat:0.1843,bh:0.4282,sharpe:1.1819,mdd:-0.0598,calmar:2.6177,trades:709,period:"2025-04-25 → 2026-06-26"},
+  {model:"LSTM",   tag:"chip-teal",  strat:0.1256,bh:0.4235,sharpe:0.6720,mdd:-0.0799,calmar:1.3450,trades:1130,period:"2025-04-28 → 2026-06-26"},
+  {model:"TFT",    tag:"chip-amber", strat:0.1082,bh:0.4235,sharpe:0.6500,mdd:-0.0475,calmar:1.9526,trades:1404,period:"2025-04-28 → 2026-06-26"},
 ];
-const TOP5 = ["volatility_10","rsi","ret_3","ret_5","macd"];
+const TOP5 = ["vix","yield_curve","fused_sentiment","dxy","ret_3"];
 const FEAT_COLORS = ["#e05050","#3b82f6","#16a34a","#d97706","#9333ea"];
 
 // Global bars
@@ -303,8 +303,8 @@ const FEAT_COLORS = ["#e05050","#3b82f6","#16a34a","#d97706","#9333ea"];
   const c = document.getElementById('global-bars');
   const top10 = GLOBAL.slice(0,10);
   const mx = Math.max(...top10.map(d=>Math.max(d.xgb,d.lstm,d.tft)));
-  const sentFeats = new Set(['fused_sentiment','has_signal','vix']);
-  const topFeats  = new Set(['volatility_10','rsi','macd']);
+  const sentFeats = new Set(['fused_sentiment','has_signal']);
+  const topFeats  = new Set(['vix','yield_curve','dxy']);
   top10.forEach(d=>{
     const row=document.createElement('div'); row.className='bar-row';
     const lbl=document.createElement('div');
@@ -367,31 +367,34 @@ const FEAT_COLORS = ["#e05050","#3b82f6","#16a34a","#d97706","#9333ea"];
 // Weekly charts
 const WEEKLY = {
   xgb:[
-    {w:"2025-05",v:[0.121,0.178,0.092,0.186,0.076]},{w:"2025-06",v:[0.131,0.149,0.084,0.152,0.094]},
-    {w:"2025-07",v:[0.127,0.122,0.094,0.133,0.091]},{w:"2025-08",v:[0.143,0.127,0.093,0.153,0.079]},
-    {w:"2025-09",v:[0.121,0.124,0.082,0.148,0.097]},{w:"2025-10",v:[0.108,0.122,0.081,0.139,0.079]},
-    {w:"2025-11",v:[0.109,0.118,0.072,0.124,0.071]},{w:"2025-12",v:[0.103,0.109,0.071,0.121,0.068]},
-    {w:"2026-01",v:[0.109,0.114,0.082,0.127,0.072]},{w:"2026-02",v:[0.117,0.116,0.080,0.125,0.075]},
-    {w:"2026-03",v:[0.123,0.119,0.086,0.130,0.081]},{w:"2026-04",v:[0.142,0.133,0.102,0.148,0.096]},
-    {w:"2026-05",v:[0.136,0.126,0.098,0.143,0.092]},{w:"2026-06",v:[0.121,0.111,0.086,0.128,0.080]},
+    {w:"2025-04",v:[0.1438,0.1418,0.1232,0.0404,0.0481]},{w:"2025-05",v:[0.2142,0.0615,0.1146,0.0430,0.0570]},
+    {w:"2025-06",v:[0.0977,0.1020,0.0931,0.1014,0.0487]},{w:"2025-07",v:[0.1147,0.1242,0.0987,0.1224,0.0528]},
+    {w:"2025-08",v:[0.1124,0.0947,0.0895,0.0781,0.0488]},{w:"2025-09",v:[0.1082,0.0749,0.0942,0.1383,0.0476]},
+    {w:"2025-10",v:[0.1318,0.0548,0.1047,0.0487,0.0471]},{w:"2025-11",v:[0.1667,0.0654,0.0956,0.0376,0.0519]},
+    {w:"2025-12",v:[0.1171,0.0557,0.0720,0.0839,0.0471]},{w:"2026-01",v:[0.0983,0.0683,0.0843,0.0932,0.0495]},
+    {w:"2026-02",v:[0.1173,0.1138,0.0841,0.1314,0.0501]},{w:"2026-03",v:[0.1681,0.0826,0.0976,0.0598,0.0467]},
+    {w:"2026-04",v:[0.1365,0.0594,0.0892,0.0636,0.0491]},{w:"2026-05",v:[0.1425,0.0436,0.0823,0.0600,0.0484]},
+    {w:"2026-06",v:[0.1378,0.0497,0.0705,0.0809,0.0482]},
   ],
   lstm:[
-    {w:"2025-05",v:[0.141,0.052,0.071,0.118,0.088]},{w:"2025-06",v:[0.131,0.054,0.066,0.115,0.082]},
-    {w:"2025-07",v:[0.133,0.048,0.072,0.108,0.081]},{w:"2025-08",v:[0.139,0.053,0.067,0.112,0.085]},
-    {w:"2025-09",v:[0.134,0.056,0.064,0.107,0.083]},{w:"2025-10",v:[0.124,0.047,0.063,0.101,0.077]},
-    {w:"2025-11",v:[0.121,0.052,0.067,0.105,0.074]},{w:"2025-12",v:[0.115,0.049,0.061,0.099,0.068]},
-    {w:"2026-01",v:[0.119,0.053,0.065,0.103,0.072]},{w:"2026-02",v:[0.126,0.052,0.066,0.110,0.079]},
-    {w:"2026-03",v:[0.135,0.054,0.074,0.118,0.087]},{w:"2026-04",v:[0.140,0.058,0.078,0.122,0.091]},
-    {w:"2026-05",v:[0.136,0.053,0.074,0.118,0.087]},{w:"2026-06",v:[0.132,0.049,0.070,0.114,0.083]},
+    {w:"2025-04",v:[0.00030,0.00004,0.00013,0.00008,0.00019]},{w:"2025-05",v:[0.00014,0.00010,0.00011,0.00004,0.00013]},
+    {w:"2025-06",v:[0.00013,0.00013,0.00009,0.00006,0.00011]},{w:"2025-07",v:[0.00012,0.00011,0.00010,0.00007,0.00012]},
+    {w:"2025-08",v:[0.00018,0.00013,0.00011,0.00008,0.00013]},{w:"2025-09",v:[0.00017,0.00012,0.00010,0.00006,0.00011]},
+    {w:"2025-10",v:[0.00013,0.00012,0.00009,0.00006,0.00010]},{w:"2025-11",v:[0.00011,0.00013,0.00008,0.00004,0.00010]},
+    {w:"2025-12",v:[0.00018,0.00021,0.00010,0.00007,0.00012]},{w:"2026-01",v:[0.00019,0.00028,0.00011,0.00008,0.00012]},
+    {w:"2026-02",v:[0.00005,0.00030,0.00008,0.00006,0.00010]},{w:"2026-03",v:[0.00016,0.00033,0.00009,0.00007,0.00011]},
+    {w:"2026-04",v:[0.00013,0.00034,0.00010,0.00008,0.00016]},{w:"2026-05",v:[0.00011,0.00038,0.00009,0.00006,0.00012]},
+    {w:"2026-06",v:[0.00010,0.00040,0.00008,0.00004,0.00011]},
   ],
   tft:[
-    {w:"2025-05",v:[0.094,0.091,0.116,0.048,0.059]},{w:"2025-06",v:[0.087,0.086,0.109,0.046,0.053]},
-    {w:"2025-07",v:[0.083,0.083,0.105,0.043,0.050]},{w:"2025-08",v:[0.093,0.090,0.115,0.045,0.058]},
-    {w:"2025-09",v:[0.084,0.082,0.106,0.039,0.052]},{w:"2025-10",v:[0.080,0.079,0.102,0.037,0.049]},
-    {w:"2025-11",v:[0.077,0.076,0.098,0.040,0.046]},{w:"2025-12",v:[0.082,0.080,0.103,0.043,0.050]},
-    {w:"2026-01",v:[0.083,0.081,0.104,0.044,0.051]},{w:"2026-02",v:[0.087,0.085,0.108,0.046,0.055]},
-    {w:"2026-03",v:[0.096,0.093,0.116,0.050,0.063]},{w:"2026-04",v:[0.104,0.100,0.122,0.054,0.071]},
-    {w:"2026-05",v:[0.100,0.096,0.118,0.051,0.067]},{w:"2026-06",v:[0.096,0.092,0.114,0.048,0.063]},
+    {w:"2025-04",v:[0.00071,0.00212,0.00128,0.00066,0.00081]},{w:"2025-05",v:[0.00101,0.00252,0.00092,0.00051,0.00088]},
+    {w:"2025-06",v:[0.00220,0.00302,0.00081,0.00091,0.00042]},{w:"2025-07",v:[0.00261,0.00291,0.00088,0.00101,0.00048]},
+    {w:"2025-08",v:[0.00272,0.00298,0.00089,0.00092,0.00043]},{w:"2025-09",v:[0.00281,0.00297,0.00073,0.00098,0.00040]},
+    {w:"2025-10",v:[0.00221,0.00281,0.00080,0.00082,0.00034]},{w:"2025-11",v:[0.00159,0.00238,0.00069,0.00061,0.00036]},
+    {w:"2025-12",v:[0.00332,0.00234,0.00073,0.00104,0.00040]},{w:"2026-01",v:[0.00347,0.00232,0.00088,0.00110,0.00041]},
+    {w:"2026-02",v:[0.00213,0.00218,0.00061,0.00108,0.00060]},{w:"2026-03",v:[0.00148,0.00121,0.00049,0.00052,0.00043]},
+    {w:"2026-04",v:[0.00202,0.00136,0.00079,0.00080,0.00066]},{w:"2026-05",v:[0.00323,0.00140,0.00073,0.00075,0.00047]},
+    {w:"2026-06",v:[0.00370,0.00119,0.00062,0.00046,0.00049]},
   ],
 };
 
@@ -415,7 +418,7 @@ function drawChart(id, rows) {
     ctx.strokeStyle='rgba(0,0,0,0.07)'; ctx.lineWidth=0.5;
     ctx.beginPath(); ctx.moveTo(pad.left,y); ctx.lineTo(pad.left+iW,y); ctx.stroke();
     ctx.fillStyle='#888780'; ctx.font='9px system-ui,sans-serif'; ctx.textAlign='right';
-    ctx.fillText((mx*t).toFixed(3),pad.left-4,y+3);
+    ctx.fillText(mx<0.01?(mx*t).toExponential(1):(mx*t).toFixed(3),pad.left-4,y+3);
   });
   ctx.fillStyle='#888780'; ctx.font='9px system-ui,sans-serif'; ctx.textAlign='center';
   rows.forEach((r,i)=>{
