@@ -106,7 +106,7 @@
 <div class="page">
 
   <h1>COMP47250 P7 - Explainable Financial Forecasting Platform</h1>
-  <p class="subtitle">Updated June 24, 2026 &nbsp;·&nbsp; Interim demo done June 23 &nbsp;·&nbsp; Final deadline August 18, 2026</p>
+  <p class="subtitle">Updated August 4, 2026 &nbsp;·&nbsp; Final demo done August 3 &nbsp;·&nbsp; Only the final report remains — due August 18, 2026</p>
 
   <!-- OVERVIEW -->
   <div class="overview-grid">
@@ -141,16 +141,16 @@
   <!-- AT A GLANCE -->
   <div class="kpi-row">
     <div class="kpi"><div class="kpi-label">Team</div><div class="kpi-value">6</div><div class="kpi-sub">members</div></div>
-    <div class="kpi"><div class="kpi-label">Stocks covered</div><div class="kpi-value">9</div><div class="kpi-sub">large-cap US equities</div></div>
-    <div class="kpi"><div class="kpi-label">Training data</div><div class="kpi-value">5 yrs</div><div class="kpi-sub">2021 to 2026</div></div>
-    <div class="kpi"><div class="kpi-label">News headlines</div><div class="kpi-value">30k</div><div class="kpi-sub">FinBERT scored</div></div>
+    <div class="kpi"><div class="kpi-label">Stocks covered</div><div class="kpi-value">30</div><div class="kpi-sub">large-cap US equities</div></div>
+    <div class="kpi"><div class="kpi-label">Training data</div><div class="kpi-value">6.5 yrs</div><div class="kpi-sub">2019 to 2026</div></div>
+    <div class="kpi"><div class="kpi-label">Texts scored</div><div class="kpi-value">160k</div><div class="kpi-sub">news + Reddit, FinBERT</div></div>
     <div class="kpi"><div class="kpi-label">Models</div><div class="kpi-value">3</div><div class="kpi-sub">XGBoost, LSTM, TFT</div></div>
     <div class="kpi"><div class="kpi-label">Final deadline</div><div class="kpi-value">Aug 18</div><div class="kpi-sub">report and assessment</div></div>
   </div>
 
   <!-- END PRODUCT -->
   <div class="end-product">
-    <div class="ep-title">What the finished platform will look like</div>
+    <div class="ep-title">What the finished platform looks like — delivered</div>
     <ul class="ep-list">
       <li><i class="ti ti-device-desktop-analytics"></i>A live dashboard showing today's buy or sell signal for each stock, refreshed every 3 hours by a background service running on Render.</li>
       <li><i class="ti ti-brain"></i>Three trained models (XGBoost, LSTM, and TFT) each producing a confidence score, with results displayed side by side so you can compare how they perform.</li>
@@ -161,7 +161,7 @@
   </div>
 
   <div class="alert-green">
-    The team presented the interim demo on June 23 and showed a working data pipeline, a trained XGBoost model, a live frontend, and the cron service running in production. The next focus is closing three gaps before the final demo on August 3.
+    The final demo was presented on August 3 with all three retrained models live, SHAP explanations on every prediction, and a cost-aware backtest where every model posts Sharpe &gt; 0 (walk-forward XGBoost: 1.68). Every engineering phase below is complete — the only remaining deliverable is the final report and AI usage log, due August 18.
   </div>
 
   <div class="deadline-row" id="milestones"></div>
@@ -331,9 +331,9 @@
 
     <div class="phase">
       <div class="phase-header">
-        <span class="phase-badge badge-done">Pipeline done, integration pending</span>
+        <span class="phase-badge badge-done">Completed</span>
         <span class="phase-title">LSTM model with Kafka streaming</span>
-        <span class="phase-date">June 16</span>
+        <span class="phase-date">June 16 → July 26</span>
       </div>
       <div class="items">
         <div class="item done">
@@ -344,12 +344,12 @@
             <div class="item-who"><span class="who-pill">Shreyas</span></div>
           </div>
         </div>
-        <div class="item now">
-          <i class="ti ti-clock item-icon"></i>
+        <div class="item done">
+          <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Connect the LSTM to the full feature set including sentiment and macro data so it can be fairly compared against XGBoost</div>
-            <div class="item-sub">Right now it only trains on raw price data. The sentiment pipeline needs to be wired in</div>
-            <div class="item-who"><span class="who-pill">Shreyas</span><span class="who-pill">Abhijit</span></div>
+            <div class="item-text">Connected the LSTM to the full 20-feature set (sentiment + macro) on the shared 30-ticker dataset and split</div>
+            <div class="item-sub">Also fixed a 97%-BUY majority-class collapse with a balanced batch sampler — now 51.0% accuracy / 0.515 AUC predicting both classes, strategy Sharpe 0.67</div>
+            <div class="item-who"><span class="who-pill">Shreyas</span><span class="who-pill">Mateen</span></div>
           </div>
         </div>
       </div>
@@ -357,24 +357,24 @@
 
     <div class="phase">
       <div class="phase-header">
-        <span class="phase-badge badge-now">In progress</span>
+        <span class="phase-badge badge-done">Completed</span>
         <span class="phase-title">Temporal Fusion Transformer</span>
-        <span class="phase-date">Target: July 5</span>
+        <span class="phase-date">Done July 27</span>
       </div>
       <div class="items">
-        <div class="item next-item">
-          <i class="ti ti-arrow-right item-icon"></i>
+        <div class="item done">
+          <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Set up and train the TFT model using PyTorch Lightning on the full multi-signal dataset</div>
-            <div class="item-sub">TFT is particularly well suited here because it handles sequential data natively and supports multi-horizon forecasting (1 to 5 days out)</div>
-            <div class="item-who"><span class="who-pill">Varun</span><span class="who-pill">Mateen</span></div>
+            <div class="item-text">Built and trained a custom PyTorch TFT (variable selection network, LSTM encoder, gated residual blocks, interpretable multi-head attention) on the full multi-signal dataset</div>
+            <div class="item-sub">Fixed a 99%-BUY collapse with class-weighted loss (tft_v3) — now 42% BUY, 50.8% accuracy, and the smallest backtest drawdown of the three (-4.8%)</div>
+            <div class="item-who"><span class="who-pill">Ruben</span><span class="who-pill">Mateen</span></div>
           </div>
         </div>
-        <div class="item todo">
-          <i class="ti ti-circle-dashed item-icon"></i>
+        <div class="item done">
+          <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Do a proper side-by-side comparison of all three models on accuracy, F1, and financial performance metrics</div>
-            <div class="item-who"><span class="who-pill">Varun</span><span class="who-pill">Shreyas</span></div>
+            <div class="item-text">Side-by-side comparison of all three models on accuracy, F1, AUC and financial KPIs — live on the Results page and in backtest_kpis.csv</div>
+            <div class="item-who"><span class="who-pill">Varun</span><span class="who-pill">Kanwal</span></div>
           </div>
         </div>
       </div>
@@ -382,25 +382,25 @@
 
     <div class="phase">
       <div class="phase-header">
-        <span class="phase-badge badge-now">Not started yet - Grade A requirement</span>
+        <span class="phase-badge badge-done">Completed</span>
         <span class="phase-title">Cross-validation and hyperparameter tuning</span>
-        <span class="phase-date">Target: July 12</span>
+        <span class="phase-date">Done July 27</span>
       </div>
       <div class="items">
-        <div class="item next-item">
-          <i class="ti ti-arrow-right item-icon"></i>
+        <div class="item done">
+          <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Replace the single 80/20 train/test split with proper time-series cross-validation across all three models</div>
-            <div class="item-sub">The rubric explicitly separates "proper cross-validation" as the line between Grade B and Grade A on model quality. The current XGBoost split alone is categorised as Grade C</div>
-            <div class="item-who"><span class="who-pill">Kanwal</span><span class="who-pill">Shreyas</span><span class="who-pill">Varun</span></div>
+            <div class="item-text">Added 4-fold expanding-window time-series cross-validation, run entirely inside the training period (test window untouched)</div>
+            <div class="item-sub">tune_xgb.py — per-fold AUCs and variance saved to xgb_tuning_trials.csv / xgb_tuning_best.csv</div>
+            <div class="item-who"><span class="who-pill">Kanwal</span><span class="who-pill">Mateen</span></div>
           </div>
         </div>
-        <div class="item todo">
-          <i class="ti ti-circle-dashed item-icon"></i>
+        <div class="item done">
+          <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Run a hyperparameter search for each model and write up what was tried, what was selected, and why</div>
-            <div class="item-sub">This needs to appear in the final report. Without a documented tuning process the project cannot score Grade A on model quality even if the models perform well</div>
-            <div class="item-who"><span class="who-pill">Kanwal</span><span class="who-pill">Shreyas</span><span class="who-pill">Mateen</span></div>
+            <div class="item-text">Ran a 40-trial Optuna hyperparameter search — CV AUC 0.507 → 0.517; winning config: depth 4, LR 0.017, 800 trees, heavy regularization</div>
+            <div class="item-sub">Search space and results recorded for the report's tuning section</div>
+            <div class="item-who"><span class="who-pill">Kanwal</span><span class="who-pill">Mateen</span></div>
           </div>
         </div>
       </div>
@@ -408,25 +408,25 @@
 
     <div class="phase">
       <div class="phase-header">
-        <span class="phase-badge badge-now">Not started yet - Grade A requirement</span>
+        <span class="phase-badge badge-done">Audit done — write-up lands in the report</span>
         <span class="phase-title">Preprocessing documentation and lookahead audit</span>
-        <span class="phase-date">Target: July 12</span>
+        <span class="phase-date">Audit done July 27</span>
       </div>
       <div class="items">
-        <div class="item next-item">
-          <i class="ti ti-arrow-right item-icon"></i>
+        <div class="item done">
+          <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Write up how each of the four signal types was collected, cleaned, and aligned, including the decisions made and why</div>
-            <div class="item-sub">The rubric for Grade A on data pipeline says "documented" preprocessing. This means a written section in the report, not just working code</div>
-            <div class="item-who"><span class="who-pill">Mateen</span><span class="who-pill">Varun</span><span class="who-pill">Kanwal</span></div>
+            <div class="item-text">Audited the feature engineering and backtest for lookahead — every rolling window backward-looking, label the only forward column</div>
+            <div class="item-sub">The audit caught a real return-alignment bug in the backtest (signals credited with the prior day's return); fixed and all results re-run</div>
+            <div class="item-who"><span class="who-pill">Mateen</span><span class="who-pill">Ruben</span></div>
           </div>
         </div>
         <div class="item todo">
           <i class="ti ti-circle-dashed item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Audit the feature engineering code to confirm no future data leaks into any training window</div>
-            <div class="item-sub">Rolling indicators like SMA and volatility can silently introduce lookahead if the shift logic is off by one. This needs to be verified and stated explicitly in the report</div>
-            <div class="item-who"><span class="who-pill">Kanwal</span><span class="who-pill">Ruben</span></div>
+            <div class="item-text">Write up how each of the four signal types was collected, cleaned, and aligned — dedicated section of the final report (Aug 18)</div>
+            <div class="item-sub">All source material ready: collectors, fusion formula, decay-fill, coverage table</div>
+            <div class="item-who"><span class="who-pill">Mateen</span><span class="who-pill">Varun</span><span class="who-pill">Kanwal</span></div>
           </div>
         </div>
       </div>
@@ -438,30 +438,30 @@
     <div class="section-title">Phase 4 - Explainability and backtesting (Target: July 12)</div>
     <div class="phase">
       <div class="phase-header">
-        <span class="phase-badge badge-now">Not started yet - critical</span>
+        <span class="phase-badge badge-done">Completed</span>
         <span class="phase-title">SHAP explainability</span>
-        <span class="phase-date">Target: July 12</span>
+        <span class="phase-date">Done July 27</span>
       </div>
       <div class="items">
-        <div class="item next-item">
-          <i class="ti ti-arrow-right item-icon"></i>
+        <div class="item done">
+          <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Apply SHAP to the XGBoost model to produce per-prediction waterfall plots showing what drove each signal</div>
-            <div class="item-sub">We already have global feature importance but SHAP at the individual prediction level is what the project requires for a Grade A</div>
-            <div class="item-who"><span class="who-pill">Kanwal</span><span class="who-pill">Ruben</span></div>
+            <div class="item-text">Per-prediction SHAP for XGBoost via TreeExplainer (exact, full 8,500-row test set) — waterfall shown on every stock page</div>
+            <div class="item-who"><span class="who-pill">Mateen</span></div>
           </div>
         </div>
-        <div class="item todo">
-          <i class="ti ti-circle-dashed item-icon"></i>
+        <div class="item done">
+          <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Extend SHAP to the LSTM and TFT models and produce aggregated daily and weekly views</div>
-            <div class="item-who"><span class="who-pill">Abhijit</span><span class="who-pill">Shreyas</span></div>
+            <div class="item-text">SHAP extended to LSTM and TFT via GradientExplainer, with per-prediction, daily, weekly and global aggregations for all three models</div>
+            <div class="item-sub">Finding: macro dominates (VIX #1, yield curve #2, DXY #4); fused_sentiment ranks 3rd of 20 — see the published SHAP report</div>
+            <div class="item-who"><span class="who-pill">Mateen</span></div>
           </div>
         </div>
-        <div class="item todo">
-          <i class="ti ti-circle-dashed item-icon"></i>
+        <div class="item done">
+          <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Serve SHAP values through the API so the frontend can show a proper explanation panel on each stock page</div>
+            <div class="item-text">SHAP served through the API (/api/shap/global, /daily, /weekly, /perpred) with an explanation panel and model switcher on each stock page</div>
             <div class="item-who"><span class="who-pill">Ruben</span><span class="who-pill">Varun</span></div>
           </div>
         </div>
@@ -470,9 +470,9 @@
 
     <div class="phase">
       <div class="phase-header">
-        <span class="phase-badge badge-now">Partially done, needs upgrading</span>
+        <span class="phase-badge badge-done">Completed</span>
         <span class="phase-title">Walk-forward backtesting engine</span>
-        <span class="phase-date">Target: July 12</span>
+        <span class="phase-date">Done July 27</span>
       </div>
       <div class="items">
         <div class="item done">
@@ -483,18 +483,18 @@
             <div class="item-who"><span class="who-pill">Ruben</span><span class="who-pill">Varun</span></div>
           </div>
         </div>
-        <div class="item next-item">
-          <i class="ti ti-arrow-right item-icon"></i>
+        <div class="item done">
+          <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Upgrade to a proper walk-forward backtest that includes transaction costs and realistic position sizing</div>
-            <div class="item-sub">The current version does not re-train on a rolling window and does not account for any trading costs, which inflates the returns</div>
-            <div class="item-who"><span class="who-pill">Ruben</span></div>
+            <div class="item-text">Upgraded to a cost-aware backtest (10 bps per trade, equal-weight long-only, hysteresis confidence filter) plus a TRUE walk-forward engine with 14 monthly expanding-window retrains</div>
+            <div class="item-sub">All three models Sharpe &gt; 0 (XGB 1.18, LSTM 0.67, TFT 0.65); walk-forward XGB: Sharpe 1.68, +25.2%, MDD -5.6%</div>
+            <div class="item-who"><span class="who-pill">Ruben</span><span class="who-pill">Mateen</span></div>
           </div>
         </div>
-        <div class="item todo">
-          <i class="ti ti-circle-dashed item-icon"></i>
+        <div class="item done">
+          <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Calculate and display Sharpe ratio, maximum drawdown, and Calmar ratio compared against the benchmark</div>
+            <div class="item-text">Sharpe, max drawdown, Calmar and cumulative return computed for every model against the buy-and-hold benchmark — shown on the Results page and in the SHAP report</div>
             <div class="item-who"><span class="who-pill">Ruben</span><span class="who-pill">Kanwal</span></div>
           </div>
         </div>
@@ -507,23 +507,22 @@
     <div class="section-title">Phase 5 - Macro signals (Target: July 5, mandatory)</div>
     <div class="phase">
       <div class="phase-header">
-        <span class="phase-badge badge-now">Not started yet</span>
-        <span class="phase-title">Macro data from the FRED API</span>
-        <span class="phase-date">Target: July 5</span>
+        <span class="phase-badge badge-done">Completed</span>
+        <span class="phase-title">Macro signals (VIX, yield curve, DXY)</span>
+        <span class="phase-date">Done July</span>
       </div>
       <div class="items">
-        <div class="item next-item">
-          <i class="ti ti-arrow-right item-icon"></i>
+        <div class="item done">
+          <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Pull VIX, yield curve slope, and DXY from the FRED API and align everything to daily trading dates</div>
-            <div class="item-sub">This is the fourth required signal type in the project spec. At the moment only price, technical, and sentiment signals are in the model</div>
-            <div class="item-who"><span class="who-pill">Kanwal</span><span class="who-pill">Shreyas</span></div>
+            <div class="item-text">Pulled VIX (^VIX), yield-curve slope (^TNX − ^IRX) and DXY (DX-Y.NYB) via yfinance and aligned them to daily trading dates with forward-fill</div>
+            <div class="item-who"><span class="who-pill">Kanwal</span><span class="who-pill">Mateen</span></div>
           </div>
         </div>
-        <div class="item todo">
-          <i class="ti ti-circle-dashed item-icon"></i>
+        <div class="item done">
+          <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Add the macro features to the training dataset and retrain all three models to see how much they help</div>
+            <div class="item-text">Macro features in the training set and all three models retrained — SHAP shows they became the dominant signal family (VIX #1, yield curve #2)</div>
             <div class="item-who"><span class="who-pill">Kanwal</span></div>
           </div>
         </div>
@@ -562,10 +561,10 @@
             <div class="item-who"><span class="who-pill">Abhijit</span></div>
           </div>
         </div>
-        <div class="item now">
-          <i class="ti ti-clock item-icon"></i>
+        <div class="item done">
+          <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Add a SHAP explanation panel to each stock page once the SHAP values are ready</div>
+            <div class="item-text">SHAP explanation panel live on each stock page — per-prediction waterfall with an XGBoost / LSTM / TFT model switcher</div>
             <div class="item-who"><span class="who-pill">Varun</span><span class="who-pill">Ruben</span></div>
           </div>
         </div>
@@ -578,28 +577,28 @@
     <div class="section-title">Phase 7 - Final demo and report (Aug 3 and Aug 18)</div>
     <div class="phase">
       <div class="phase-header">
-        <span class="phase-badge badge-next">Upcoming: Aug 3</span>
+        <span class="phase-badge badge-done">Completed Aug 3</span>
         <span class="phase-title">Final demo (15 minutes, worth 25% of the grade)</span>
       </div>
       <div class="items">
-        <div class="item todo">
-          <i class="ti ti-circle-dashed item-icon"></i>
+        <div class="item done">
+          <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Demo all three models running live in the dashboard with their accuracy, backtest performance, and KPIs visible at the same time</div>
+            <div class="item-text">Demoed all three models live in the dashboard with accuracy, backtest performance, and KPIs</div>
             <div class="item-who"><span class="who-pill">All</span></div>
           </div>
         </div>
-        <div class="item todo">
-          <i class="ti ti-circle-dashed item-icon"></i>
+        <div class="item done">
+          <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Show the SHAP explanation panel working on a live prediction so the examiners can see how the explainability layer fits into the product</div>
+            <div class="item-text">Showed the SHAP explanation panel on a live prediction — waterfall + model switcher on the stock pages</div>
             <div class="item-who"><span class="who-pill">Ruben</span><span class="who-pill">Varun</span></div>
           </div>
         </div>
-        <div class="item todo">
-          <i class="ti ti-circle-dashed item-icon"></i>
+        <div class="item done">
+          <i class="ti ti-circle-check item-icon"></i>
           <div class="item-content">
-            <div class="item-text">Display the Sharpe ratio, max drawdown, and Calmar ratio for each model so the financial performance is easy to interpret</div>
+            <div class="item-text">Presented Sharpe, max drawdown, and Calmar for each model — all three Sharpe &gt; 0, walk-forward XGBoost at 1.68</div>
             <div class="item-who"><span class="who-pill">Ruben</span><span class="who-pill">Kanwal</span></div>
           </div>
         </div>
@@ -652,9 +651,9 @@
     <div class="section-title">AI strategy (required in project plan document)</div>
     <div class="phase">
       <div class="phase-header">
-        <span class="phase-badge badge-now">Not started yet - mandatory</span>
-        <span class="phase-title">AI strategy section and weekly show-and-tell log</span>
-        <span class="phase-date">Ongoing until Aug 18</span>
+        <span class="phase-badge badge-next">Report item — due Aug 18</span>
+        <span class="phase-title">AI strategy section and usage log (part of the final report)</span>
+        <span class="phase-date">Due Aug 18</span>
       </div>
       <div class="items">
         <div class="item next-item">
@@ -703,7 +702,7 @@
           <span class="tag tag-green">Frontend</span>
           <span class="tag tag-green">API</span>
           <span class="tag tag-green">Deployment</span>
-          <span class="tag tag-amber">TFT (in progress)</span>
+          <span class="tag tag-green">Gemini narration</span>
         </div>
       </div>
 
@@ -717,7 +716,8 @@
           <span class="tag tag-green">Reddit pipeline</span>
           <span class="tag tag-green">FinBERT scoring</span>
           <span class="tag tag-green">Sentiment merge</span>
-          <span class="tag tag-amber">TFT (in progress)</span>
+          <span class="tag tag-green">SHAP layer</span>
+          <span class="tag tag-green">Ablation + tuning</span>
           <span class="tag tag-blue">Final report</span>
         </div>
       </div>
@@ -732,8 +732,8 @@
           <span class="tag tag-green">FastAPI</span>
           <span class="tag tag-green">Database schema</span>
           <span class="tag tag-green">Basic backtest</span>
-          <span class="tag tag-amber">Walk-forward backtest</span>
-          <span class="tag tag-amber">SHAP API</span>
+          <span class="tag tag-green">Walk-forward backtest</span>
+          <span class="tag tag-green">SHAP API</span>
         </div>
       </div>
 
@@ -747,8 +747,8 @@
           <span class="tag tag-green">Cron service</span>
           <span class="tag tag-green">Live prediction</span>
           <span class="tag tag-green">Marketaux integration</span>
-          <span class="tag tag-amber">LSTM integration</span>
-          <span class="tag tag-amber">SHAP for LSTM</span>
+          <span class="tag tag-green">Ensemble experiment</span>
+          <span class="tag tag-green">Live SHAP fix</span>
         </div>
       </div>
 
@@ -762,8 +762,8 @@
           <span class="tag tag-green">XGBoost training</span>
           <span class="tag tag-green">Feature engineering</span>
           <span class="tag tag-green">Training dataset</span>
-          <span class="tag tag-amber">SHAP for XGBoost</span>
-          <span class="tag tag-amber">Macro signals</span>
+          <span class="tag tag-green">Evaluation protocol</span>
+          <span class="tag tag-green">Macro signals</span>
         </div>
       </div>
 
@@ -777,9 +777,9 @@
           <span class="tag tag-green">LSTM architecture</span>
           <span class="tag tag-green">Kafka pipeline</span>
           <span class="tag tag-green">Docker Compose</span>
-          <span class="tag tag-amber">Sentiment integration</span>
-          <span class="tag tag-amber">SHAP for LSTM</span>
-          <span class="tag tag-amber">Macro signals</span>
+          <span class="tag tag-green">Sentiment integration</span>
+          <span class="tag tag-green">LSTM degeneracy fix</span>
+          <span class="tag tag-green">Macro signals</span>
         </div>
       </div>
 
